@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion
+{% endblock %}
+
+{% block body %}
+	<div class="blockPage loginPage">
+		<div class="block">
+			{% for message in app.flashes('success') %}
+				<div class="alert alert-success">
+					{{ message }}
+				</div>
+			{% endfor %}
+
+			<form method="post">
+				{% if error %}
+					<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+				{% endif %}
+
+				<h1 class="h3 mb-3 font-weight-normal">Veuillez vous connecter</h1>
+				<div>
+					<label for="inputEmail">Email</label>
+					<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+				</div>
+				<div>
+					<label for="inputPassword">Mot de passe</label>
+					{% block show_hide_password %}
+						<input type="password" id="user_password" name="password" class="form-control" required>
+					{% endblock show_hide_password %}
+					{# <input type="checkbox" onclick="showPass()"> Afficher le mot de passe<br> #}
+				</div>
+
+				<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+				<button class="btn btn-sm" type="submit">Connexion</button>
+			</form>
+
+			<div>
+				<hr>
+				<p>Pas de compte ?</p>
+				<a class="btn btn-sm" href="{{ path('app_user_new') }}" class="dropdown-item">Création</a>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}
+
+{# {% block javascripts %}
+    <script>
+        function showPass() {
+            var x = document.getElementById("user_password");
+            //var img = document.getElementById("showPass");
+            if (x.type === "password") {
+                    x.type = "text";
+                    //img = '<i class="fa-solid fa-eye-slash"></i>';
+                } else {
+                    x.type = "password";
+                    //img = '<i class="fa-solid fa-eye"></i>';
+                }
+            }
+    </script>
+{% endblock %} #}
+
+{# {% block javascripts %}
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4s0861IHNDGainJNDZwrnQq4s086I"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jan'mousorigin' crossorigin"></script>
+{% endblock %} #}

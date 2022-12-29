@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier le compte{% endblock %}
+
+{% block body %}
+<div class="blockPage loginPage">
+    <div class="user">
+        <h1>Modifier le compte</h1>
+
+        {{ form_start(form) }}
+            {{ form_widget(form) }}
+            
+            <div class="groupe-button-option">
+                <button class="btn btn-sm">{{ button_label|default('Valider') }}</button>
+                <a class="btn btn-sm" href="{{ path('app_user_show', {'id': user.id}) }}" class="dropdown-item">Annuler</a>
+            </div>
+        {{ form_end(form) }}
+    </div>
+</div>
+{% endblock %}

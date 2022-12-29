@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Boutique
+{% endblock %}
+
+{% block body %}
+	<div class="blockPage">
+		<div class="shopUserView">
+			<h1>les produits</h1>
+
+			{# ajouter un fitre pour masquer les catégories non selectionnées #}
+			<nav>
+				<ul class="nav_list">
+					{% for category in categories %}
+						<li class="nav_list_item">
+							<h4>
+								<a href="#{{ category.id }}">
+									{{ category.name }}</a>
+							</h4>
+						</li>
+					{% endfor %}
+				</ul>
+			</nav>
+
+			<section class="categories">
+				{% for category in categories %}
+					<h2 id="{{ category.id }}">{{ category.name }}<h2>
+
+							<section class="products">
+								{% for product in products %}
+									{% if category.id == product.category.id %}
+										<article class="produit">
+											<a href="{{ path('app_product_show', {'id': product.id}) }}">
+												<figure>
+													{% for picture in product.gallery %}
+														{% if picture == product.gallery.first %}
+															<img src="{{ asset ('uploads/images_directory/'~picture.picture) }}" class="card-img" alt="{{ product.name }}">
+														{% endif %}
+													{% else %}
+														<img src="https://cdn.stocksnap.io/img-thumbs/960w/christmas-cookies_HJLVSEICE7.jpg"></img>
+													{% endfor %}
+													<figcaption class="more">
+														<p>{{ product.description }}</p>
+														<button type="button" href="{{ path('app_product_show', {'id': product.id}) }}" class="btn">Voir</button>
+													</figcaption>
+												</figure>
+
+											<aside class="overlay">
+												<h5>{{ product.name }}</h5>
+												<div class="hidden">
+													<p>{{ product.price }}€</p>
+													<button type="button" class="btn">
+														<i class="fa-solid fa-bag-shopping"></i>
+													</button>
+												</div>
+											</aside>
+										</a>
+									</article>
+								{% endif %}
+							{% else %}
+								<p>aucun produit dans ce rayon</p>
+							{% endfor %}
+						</section>
+					{% endfor %}
+				</section>
+			</div>
+		</div>
+	{% endblock %}

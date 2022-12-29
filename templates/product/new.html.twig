@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau produit{% endblock %}
+
+{% block body %}
+    <div class="blockPage">
+        <section class="shopAdmin">
+            <h1>Créez un nouveau produit</h1>
+            <div class="block-category">
+                {{ include('product/_form.html.twig') }}
+            </div>
+        <section>
+    </div>
+{% endblock %}

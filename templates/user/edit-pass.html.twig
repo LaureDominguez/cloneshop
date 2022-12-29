@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier le compte{% endblock %}
+
+{% block body %}
+<div class="blockPage loginPage">
+    <div class="user">
+        <h1>Modifier le mot de passe</h1>
+
+        {{ form_start(form) }}
+            <div>
+                <label for="inputPassword">Mot de passe actuel</label>
+                <input type="password" id="user_password" name="password" class="form-control" value="" required>
+            </div>
+
+            {{ form_widget(form) }}
+            
+            <div class="groupe-button-option">
+                <button class="btn btn-sm">{{ button_label|default('Valider') }}</button>
+                <a class="btn btn-sm" href="{{ path('app_user_show', {'id': user.id}) }}" class="dropdown-item">Annuler</a>
+            </div>
+        {{ form_end(form) }}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil{% endblock %}
+
+{% block body %}
+<div class="blockPage loginPage">
+    <div class="user">
+        <h1 class="h3 mb-3 font-weight-normal">
+            {% if app.user.firstName %}
+                    {{ app.user.firstName }}
+                {% else %}
+                    {{ app.user.userIdentifier }}
+            {% endif %}
+        </h1>
+        
+        <table class="table table-ligh">
+            <tbody>
+                <tr>
+                    <th>Email</th>
+                    <td>{{ user.email }}</td>
+                </tr>
+                <tr>
+                    <th>Nom</th>
+                    <td>{{ user.lastName }}</td>
+                </tr>
+                <tr>
+                    <th>Prénom</th>
+                    <td>{{ user.firstName }}</td>
+                </tr>
+                <tr>
+                    <th>Adrese</th>
+                    <td>{{ user.address }}</td>
+                </tr>
+                <tr>
+                    <th>Ville</th>
+                    <td>{{ user.city }}</td>
+                </tr>
+                <tr>
+                    <th>Code Postal</th>
+                    <td>{{ user.cp }}</td>
+                </tr>
+                {% if is_granted("ROLE_ADMIN") %}
+                    <tr>
+                        <th>Roles</th>
+                        <td>ADMIN</td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+        <div class="groupe-button-option">
+            <a class="btn btn-sm" href="{{ path('app_user_edit', {'id': user.id}) }}">Modifier</a>
+            <a class="btn btn-sm" href="{{ path('app_password_edit', {'id': user.id}) }}">Changer le mot de passe</a>
+            {{ include('user/_delete_form.html.twig') }}
+        <div>
+    </div>
+</div>
+{% endblock %}
