@@ -56,6 +56,7 @@ class CartController extends AbstractController
 
         $cartRepository->save($cart, true);
 
+        $this->addFlash('success', 'Produit ajouté au panier !');
         return $this->redirectToRoute('app_product_show', [
             "id"=>$product->getId(),
             'display_cart' => $this->checkCart(),
