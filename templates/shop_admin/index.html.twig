@@ -6,20 +6,16 @@
 {% block body %}
 	<div class="blockPage">
 		<section class="shopAdminView">
-			<h1>Gérez des pâtes !</h1>
-			<div>
-
-				<article class="block-category">
-					<h2>
-						<a href="{{ path('app_category_index') }}">Toutes les catégories</a>
-					</h2>
-
+		<h1>Gérer la boutique</h1>
+		<div class="flex-container">
+			<article class="block-category">
+				<h2>Les catégories</h2>
 					<table class="table table-hover">
 						<thead>
 							<tr>
 								<th scope="col">#</th>
 								<th scope="col">Catégories</th>
-								<th scope="col">Actions</th>
+								<th scope="col" colspan="2">Actions</th>
 							</tr>
 						</thead>
 
@@ -50,40 +46,67 @@
 								</tr>
 							{% else %}
 								<tr>
-									<td colspan="5">aucun objet trouvé</td>
+									<td colspan="4">aucun objet trouvé</td>
 								</tr>
 							{% endfor %}
 						</tbody>
-					</table>
 
-<div class="add-button"><a class="btn btn-sm" href="{{ path('app_category_new') }}">Ajouter une catégorie</a></div></article><article class="block-category"><h2>Tous les produits :</h2><table class="table table-hover"><thead>
-<tr>
-	<th scope="row">#</th>
-	<th scope="row">Nom</th>
-	<th scope="row">Catégorie</th>
-	<th scope="row">Actions</th>
-</tr></thead><tbody class="table-group-divider">
-{% for product in products %}
-	<tr>
-		<th scope="row">
-			<a href="{{ path('app_product_show', {'id': product.id}) }}">{{ product.id }}</a>
-		</th>
-	</tr>
-</td>
-<td>
-	<a href="{{ path('app_product_show', {'id': product.id}) }}">{{ product.name }}</a>
-</td>
-<td>{{ product.category.name }}</td>
-<td
-	class="groupe-button-pic">
-	{# <a class="btn btn-sm" href="{{ path('app_product_show', {'id': product.id}) }}"><i class="fa-regular fa-eye" title="voir"></i></i></a> #}
-	<a class="btn btn-sm" href="{{ path('app_product_edit', {'id': product.id}) }}">
-		<i class="fa-solid fa-pen-to-square" title="modifier"></i>
-	</a>
-	<form method="post" action="{{ path('app_product_delete', {'id': product.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet article ?');">
-		<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ product.id) }}">
-		<button class="btn btn-sm">
-			<i class="fa-solid fa-trash-can" title="supprimer"></i>
-		</button>
-	</form>
-</td></tbody></tr>{% else %}<tr><td colspan="5">aucun objet trouvé</td></tr>{% endfor %}</tbody></table><div class="add-button"><a class="btn btn-sm" href="{{ path('app_product_new') }}">Ajouter un article</a></div></article></div></section></div> {% endblock %}
+						<tfoot>
+							<tr>
+								<td colspan="4">
+									<a class="btn btn-sm" href="{{ path('app_category_new') }}">Ajouter une catégorie</a>
+								</td>
+							</tr>
+						</tfoot>
+					</table>
+			</article>
+
+			<article class="block-category">
+				<h2>Les produits :</h2>
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Nom</th>
+							<th scope="col">Catégorie</th>
+							<th scope="col" colspan="3">Actions</th>
+						</tr>
+					</thead>
+					
+					<tbody class="table-group-divider">
+						{% for product in products %}
+							<tr>
+								<th scope="row">{{ product.id }}</th>
+								<td>{{ product.name }}</td>
+								<td>{{ product.category.name }}</td>
+
+								<td class="groupe-button-pic">
+									<a class="btn btn-sm" href="{{ path('app_product_show', {'id': product.id}) }}"><i class="fa-regular fa-eye" title="voir"></i></i></a>
+									<a class="btn btn-sm" href="{{ path('app_product_edit', {'id': product.id}) }}">
+										<i class="fa-solid fa-pen-to-square" title="modifier"></i>
+									</a>
+
+									<form method="post" action="{{ path('app_product_delete', {'id': product.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet article ?');">
+										<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ product.id) }}">
+										<button class="btn btn-sm">
+											<i class="fa-solid fa-trash-can" title="supprimer"></i>
+										</button>
+									</form>
+								</td>
+							</tr>
+						{% else %}
+							<tr>
+								<td colspan="5">aucun objet trouvé</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+
+				<div class="add-button">
+					<a class="btn btn-sm" href="{{ path('app_product_new') }}">Ajouter un article</a>
+				</div>
+				</article>
+			</div>
+		</section>
+	</div> 
+{% endblock %}

@@ -308,24 +308,10 @@ img{
 
 /****************************** Shop Admin ***********************/
 
-.groupe-button-option {
+.flex-container{
     display: flex;
     justify-content: space-evenly;
-    align-items: center;
     flex-wrap: wrap;
-    margin-top: 1rem;
-}
-
-.groupe-button-pic {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.add-button {
-    display: flex;
-    justify-content: space-around;
 }
 
 .block-category {
@@ -335,6 +321,11 @@ img{
     border-style: solid;
     border-color: rgb(200, 200, 200);
     background-color: rgb(225, 225, 225);
+    width: 30%;
+    height: fit-content;
+    max-height: 80vh;
+    overflow-y: scroll;
+    overflow: auto;
 }
 
 .shopView img{
@@ -344,25 +335,32 @@ img{
     
 }
 
-.shopAdminView{
-    margin-top: 3rem;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 1rem;
-}
-
-.shopAdminView div {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-}
-
 .shopAdmin {
     margin-top: 3rem;
     margin-left: auto;
     margin-right: auto;
     padding: 1rem;
 }
+
+/* .groupe-button-option {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+} */
+
+.groupe-button-pic {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* .add-button {
+    display: flex;
+    justify-content: space-around;
+} */
 
 /****************************** Shop User ***********************/
 

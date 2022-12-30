@@ -56,7 +56,7 @@ class ProductController extends AbstractController
                     $galleryRepository->save($img, true);
                     $product->addGallery($img);
                     $productRepository->save($product, true);
-                    return $this->redirectToRoute('app_product_index', [], Response::HTTP_SEE_OTHER);
+                    return $this->redirectToRoute('app_shop_admin', [], Response::HTTP_SEE_OTHER);
                 }
                 
                 else {
@@ -70,7 +70,7 @@ class ProductController extends AbstractController
                     $galleryRepository->save($img, true);
                     $product->addGallery($img);
                     $productRepository->save($product, true);
-                    return $this->redirectToRoute('app_product_index', [], Response::HTTP_SEE_OTHER);
+                    return $this->redirectToRoute('app_shop_admin', [], Response::HTTP_SEE_OTHER);
                 };
         }
 
@@ -115,7 +115,7 @@ class ProductController extends AbstractController
                 $galleryRepository->save($img, true);
                 $product->addGallery($img);
                 $productRepository->save($product, true);
-                return $this->redirectToRoute('app_product_index', [], Response::HTTP_SEE_OTHER);
+                return $this->redirectToRoute('app_shop_admin', [], Response::HTTP_SEE_OTHER);
             } else {
                 $fichier = md5(uniqid()) . '-' . uniqid() . '.' . $images->guessExtension();
                 $images->move(
@@ -127,7 +127,7 @@ class ProductController extends AbstractController
                 $galleryRepository->save($img, true);
                 $product->addGallery($img);
                 $productRepository->save($product, true);
-                return $this->redirectToRoute('app_product_index', [], Response::HTTP_SEE_OTHER);
+                return $this->redirectToRoute('app_shop_admin', [], Response::HTTP_SEE_OTHER);
             };
         }
 
@@ -148,6 +148,6 @@ class ProductController extends AbstractController
             $productRepository->remove($product, true);
         }
 
-        return $this->redirectToRoute('app_product_index', ['display_cart' => false,], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_shop_admin', ['display_cart' => false,], Response::HTTP_SEE_OTHER);
     }
 }
