@@ -410,7 +410,6 @@ img{
     list-style: none;
     margin: 1rem 0;
     padding: 0 0.5rem;
-    border-radius: 5px;
 }
 
 
@@ -422,7 +421,8 @@ img{
     }
 
     .nav_list h4 {
-        line-height: 2.5rem;
+        font-size: 1.2rem;
+        line-height: 2rem;
         transition: all .2s linear;
     }
 
@@ -432,7 +432,7 @@ img{
     }
 
     .nav_list h4:hover {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
     }
 
     .nav_list li::before {
@@ -464,7 +464,7 @@ img{
     margin: 1rem;
     position: relative;
     border: 1px solid transparent;
-    border-radius: 5%;
+    border-radius: 10px;
     overflow: hidden;
 }
 
@@ -575,6 +575,32 @@ img{
 }
 
 /****************************** Products - User View ***********************/
+
+.caroussel{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 20rem;
+}
+
+.gallery{
+    object-fit: cover;
+    height: 5rem;
+    width: 5rem;
+}
+
+.gallery:first-child{
+    height: 20rem;
+    width: 20rem;
+    border-radius: 10px 0 0 10px ;
+}
+
+.shopUserView figure{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-evenly;;
+    align-items: center;
+}
 
 .shopUserView .add-cart {
     display: flex;
