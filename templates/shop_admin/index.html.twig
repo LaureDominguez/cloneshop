@@ -7,37 +7,88 @@
 	<div class="blockPage">
 		<section class="shopAdminView">
 		<h1>Gérer la boutique</h1>
-		<div class="flex-container">
-			<article class="block-category">
-				<h2>Les catégories</h2>
+			<div class="flex-container">
+				{# ------------------------------------- #}
+				<article class="block-category">
+					<h2>Les catégories</h2>
+					<div class="fixTableHead">
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th scope="col">#</th>
+									<th scope="col">Catégories</th>
+									<th scope="col" colspan="2">Actions</th>
+								</tr>
+							</thead>
+
+							<tbody class="table-group-divider">
+								{% for category in categories %}
+									<tr>
+										<th scope="row">
+											{{ category.id }}
+										</th>
+										<td class="cat">
+											<form method="post" action="{{ path('app_category_edit', {'id': category.id}) }}">
+												<input type="text" name="name" value="{{ category.name }}"></td>
+										</td>
+										<td>
+												<button class="btn btn-sm">
+													<i class="fa-solid fa-pen-to-square" title="modifier"></i>
+												</button>
+											</form>
+										</td>
+										<td>
+											<form method="post" action="{{ path('app_category_delete', {'id': category.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette catégorie ? Attention, cela supprimera tous les articles liés.');">
+												<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ category.id) }}">
+												<button class="btn btn-sm">
+													<i class="fa-solid fa-trash-can" title="supprimer"></i>
+												</button>
+											</form>
+										</td>
+									</tr>
+								{% else %}
+									<tr>
+										<td>aucun objet trouvé</td>
+									</tr>
+								{% endfor %}
+							</tbody>
+						</table>
+					</div>
+					<div class="groupe-button-option">
+						<a class="btn btn-sm" href="{{ path('app_category_new') }}">Ajouter une catégorie</a>
+					</div>
+				</article>
+				{# ---------------------------------- #}
+				<article class="block-category">
+					<h2>Les produits :</h2>
+					<div class="fixTableHead">
 					<table class="table table-hover">
 						<thead>
 							<tr>
 								<th scope="col">#</th>
-								<th scope="col">Catégories</th>
-								<th scope="col" colspan="2">Actions</th>
+								<th scope="col">Nom</th>
+								<th scope="col">Catégorie</th>
+								<th scope="col" colspan="3">Actions</th>
 							</tr>
 						</thead>
-
+						
 						<tbody class="table-group-divider">
-							{% for category in categories %}
+							{% for product in products %}
 								<tr>
-									<th scope="row">
-										{{ category.id }}
-									</th>
-									<td class="cat">
-										<form method="post" action="{{ path('app_category_edit', {'id': category.id}) }}">
-											<input type="text" name="name" value="{{ category.name }}"></td>
-									</td>
-									<td class="groupe-button-pic">
-											<button class="btn btn-sm">
-												<i class="fa-solid fa-pen-to-square" title="modifier"></i>
-											</button>
-										</form>
+									<th scope="row">{{ product.id }}</th>
+									<td>{{ product.name }}</td>
+									<td>{{ product.category.name }}</td>
+									<td>
+										<a class="btn btn-sm" href="{{ path('app_product_show', {'id': product.id}) }}"><i class="fa-regular fa-eye" title="voir"></i></a>
 									</td>
 									<td>
-										<form method="post" action="{{ path('app_category_delete', {'id': category.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette catégorie ? Attention, cela supprimera tous les articles liés.');">
-											<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ category.id) }}">
+										<a class="btn btn-sm" href="{{ path('app_product_edit', {'id': product.id}) }}">
+											<i class="fa-solid fa-pen-to-square" title="modifier"></i>
+										</a>
+									</td>
+									<td>
+										<form method="post" action="{{ path('app_product_delete', {'id': product.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet article ?');">
+											<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ product.id) }}">
 											<button class="btn btn-sm">
 												<i class="fa-solid fa-trash-can" title="supprimer"></i>
 											</button>
@@ -46,65 +97,15 @@
 								</tr>
 							{% else %}
 								<tr>
-									<td colspan="4">aucun objet trouvé</td>
+									<td colspan="5">aucun objet trouvé</td>
 								</tr>
 							{% endfor %}
 						</tbody>
-
-						<tfoot>
-							<tr>
-								<td colspan="4">
-									<a class="btn btn-sm" href="{{ path('app_category_new') }}">Ajouter une catégorie</a>
-								</td>
-							</tr>
-						</tfoot>
 					</table>
-			</article>
-
-			<article class="block-category">
-				<h2>Les produits :</h2>
-				<table class="table table-hover">
-					<thead>
-						<tr>
-							<th scope="col">#</th>
-							<th scope="col">Nom</th>
-							<th scope="col">Catégorie</th>
-							<th scope="col" colspan="3">Actions</th>
-						</tr>
-					</thead>
-					
-					<tbody class="table-group-divider">
-						{% for product in products %}
-							<tr>
-								<th scope="row">{{ product.id }}</th>
-								<td>{{ product.name }}</td>
-								<td>{{ product.category.name }}</td>
-
-								<td class="groupe-button-pic">
-									<a class="btn btn-sm" href="{{ path('app_product_show', {'id': product.id}) }}"><i class="fa-regular fa-eye" title="voir"></i></i></a>
-									<a class="btn btn-sm" href="{{ path('app_product_edit', {'id': product.id}) }}">
-										<i class="fa-solid fa-pen-to-square" title="modifier"></i>
-									</a>
-
-									<form method="post" action="{{ path('app_product_delete', {'id': product.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet article ?');">
-										<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ product.id) }}">
-										<button class="btn btn-sm">
-											<i class="fa-solid fa-trash-can" title="supprimer"></i>
-										</button>
-									</form>
-								</td>
-							</tr>
-						{% else %}
-							<tr>
-								<td colspan="5">aucun objet trouvé</td>
-							</tr>
-						{% endfor %}
-					</tbody>
-				</table>
-
-				<div class="add-button">
-					<a class="btn btn-sm" href="{{ path('app_product_new') }}">Ajouter un article</a>
-				</div>
+					</div>
+					<div class="groupe-button-option">
+						<a class="btn btn-sm" href="{{ path('app_product_new') }}">Ajouter un article</a>
+					</div>
 				</article>
 			</div>
 		</section>
