@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use App\Repository\GalleryRepository;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Validator\Constraints\Image;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
@@ -51,7 +52,7 @@ class ProductType extends AbstractType
                 "label" => "Nom",
                 "label_attr" => ["class" => "form-label"]
             ])
-            ->add('description', null, [
+            ->add('description', TextareaType::class, [
                 "attr" => ["class" => "form-control"],
                 "label" => "Description",
                 "label_attr" => ["class" => "form-label"]

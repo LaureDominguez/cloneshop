@@ -360,7 +360,7 @@ img{
     border-style: solid;
     border-color: rgb(200, 200, 200);
     background-color: rgb(225, 225, 225);
-    width: 40%;
+    width: 60%;
 }
 
 .groupe-button-option{
@@ -369,6 +369,25 @@ img{
     align-items: center;
     align-content: center;
     margin-top: 1rem;
+}
+
+.block-creation #product {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.block-creation #product div{
+    width: 40%;
+}
+.block-creation #product div:nth-child(3){
+    width: 100%;
+}
+
+.admin-img{
+    object-fit: cover;
+    height: 5rem;
+    width: 5rem;
 }
 
 /****************************** Shop User ***********************/

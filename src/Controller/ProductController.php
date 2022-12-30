@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\GalleryRepository;
+use Doctrine\ORM\Mapping\Id;
 
 #[Route('/product')]
 class ProductController extends AbstractController
@@ -115,7 +116,7 @@ class ProductController extends AbstractController
                 $galleryRepository->save($img, true);
                 $product->addGallery($img);
                 $productRepository->save($product, true);
-                return $this->redirectToRoute('app_shop_admin', [], Response::HTTP_SEE_OTHER);
+                return $this->redirectToRoute('app_product_edit', ['id'=> $product->getId()], Response::HTTP_SEE_OTHER);
             } else {
                 $fichier = md5(uniqid()) . '-' . uniqid() . '.' . $images->guessExtension();
                 $images->move(
@@ -127,7 +128,7 @@ class ProductController extends AbstractController
                 $galleryRepository->save($img, true);
                 $product->addGallery($img);
                 $productRepository->save($product, true);
-                return $this->redirectToRoute('app_shop_admin', [], Response::HTTP_SEE_OTHER);
+                return $this->redirectToRoute('app_product_edit', [], Response::HTTP_SEE_OTHER);
             };
         }
 

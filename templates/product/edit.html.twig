@@ -4,11 +4,16 @@
 
 {% block body %}
     <div class="blockPage">
-        <section class="shopAdmin">
+        <section class="shopAdminView">
             <h1>Modifier le produit</h1>
-            <div class="block-category">
+            <div class="block-creation">
                 {{ include('product/_form.html.twig', {'button_label': 'Modifier'}) }}
+                {% for picture in product.gallery %}
+                    <img src="{{ asset ('uploads/images_directory/'~picture.picture) }}" class="admin-img" alt="{{ picture.id }}">
+                {% endfor %}
             </div>
+
+
         <section>
     </div>
 {% endblock %}
