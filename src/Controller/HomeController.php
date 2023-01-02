@@ -50,17 +50,6 @@ class HomeController extends AbstractController
         ]);
     }
 
-    #[Route('/shop_user/{id}', name: 'app_shop_filtre')]
-    public function shop_filter(Category $category, CategoryRepository $categoryRepository, ProductRepository $productRepository): Response
-    {
-        $products = $productRepository->findBy(['category'=>$category]);
-        return $this->render('shop_user/filter.html.twig', [
-            'category' => $category,
-            'categories' => $categoryRepository->findAll(),
-            'products' => $products,
-            'display_cart' => $this->checkCart(),
-        ]);
-    }
 
     #[Route('/registred/basket', name: 'app_basket', methods: ['GET'])]
     public function show(CartRepository $cartRepository, ProductRepository $productRepository): Response

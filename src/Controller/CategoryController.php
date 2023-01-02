@@ -80,20 +80,6 @@ class CategoryController extends AbstractController
         return $this->redirectToRoute('app_shop_admin');
     }
 
-
-    // #[Route('admin/{id}', name: 'app_category_edit', methods: ['GET', 'POST'])]
-    // public function edit(Request $request, Category $category, CategoryRepository $categoryRepository): Response
-    // {
-    //     $form = $this->createForm(CategoryType::class, $category);
-    //     $form->handleRequest($request);
-
-    //     if ($form->isSubmitted() && $form->isValid()) {
-    //         $categoryRepository->save($category, true);
-
-    //         return $this->redirectToRoute('app_shop_admin', [], Response::HTTP_SEE_OTHER);
-    //     };
-    // }
-
     #[Route('admin/{id}', name: 'app_category_delete', methods: ['POST'])]
     public function delete(Request $request, Category $category, CategoryRepository $categoryRepository): Response
     {

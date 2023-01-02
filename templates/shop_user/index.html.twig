@@ -8,7 +8,6 @@
 		<div class="shopUserView">
 			<h1>les produits</h1>
 
-			{# ajouter un fitre pour masquer les catégories non selectionnées #}
 			<nav>
 				<ul class="nav_list">
 					{% for category in categories %}
@@ -49,9 +48,12 @@
 												<h5>{{ product.name }}</h5>
 												<div class="hidden">
 													<p>{{ product.price }}€</p>
-													<button type="button" class="btn">
-														<i class="fa-solid fa-bag-shopping"></i>
-													</button>
+													<form method="post" action="{{ path('app_cart_quick', {'id': product.id})}}">
+														<input type="hidden" name="quantity" value="1">
+														<button type="button" class="btn">
+															<i class="fa-solid fa-bag-shopping"></i>
+														</button>
+													</form>
 												</div>
 											</aside>
 										</a>

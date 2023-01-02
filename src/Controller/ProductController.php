@@ -6,26 +6,28 @@ use App\Entity\Gallery;
 use App\Entity\Product;
 use App\Form\ProductType;
 use App\Repository\ProductRepository;
-use App\Repository\CartRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\GalleryRepository;
-use Doctrine\ORM\Mapping\Id;
 
 #[Route('/product')]
 class ProductController extends AbstractController
 {
     public CartController $cartController;
-    public function __construct(CartController $cartController)
+    public GalleryRepository $galleryRepository;
+    public function __construct(CartController $cartController, GalleryRepository $galleryRepository)
     {
+        $this->galleryRepository = $galleryRepository;
         $this->cartController = $cartController;
     }
     public function checkCart()
     {
         $this->checkCart = $this->cartController->checkCart();
     }
+
+    
 ///////// Index /////////////////
 
     #[Route('/', name: 'app_product_index', methods: ['GET'])]
@@ -128,7 +130,7 @@ class ProductController extends AbstractController
                 $galleryRepository->save($img, true);
                 $product->addGallery($img);
                 $productRepository->save($product, true);
-                return $this->redirectToRoute('app_product_edit', [], Response::HTTP_SEE_OTHER);
+                return $this->redirectToRoute('app_product_edit', ['id' => $product->getId()], Response::HTTP_SEE_OTHER);
             };
         }
 
@@ -138,6 +140,11 @@ class ProductController extends AbstractController
             'form' => $form,
             'display_cart' => false,
         ]);
+    }
+
+    public function remove(Gallery $entity): void
+    {
+        $this->remove = $this->galleryRepository->remove($entity);
     }
 
 ///////////////// Delete ///////////////

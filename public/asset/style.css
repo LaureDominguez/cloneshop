@@ -384,6 +384,10 @@ img{
     width: 100%;
 }
 
+.block-creation img{
+    width: 20%;
+}
+
 .admin-img{
     object-fit: cover;
     height: 5rem;
