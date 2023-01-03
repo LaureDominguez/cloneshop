@@ -25,25 +25,25 @@
 				{% for category in categories %}
 					<h2 id="{{ category.id }}">{{ category.name }}<h2>
 
-							<section class="products">
-								{% for product in products %}
-									{% if category.id == product.category.id %}
-										<article class="produit">
-											<a href="{{ path('app_product_show', {'id': product.id}) }}">
-												<figure>
-													{% for picture in product.gallery %}
-														{% if picture == product.gallery.first %}
-															<img src="{{ asset ('uploads/images_directory/'~picture.picture) }}" class="card-img" alt="{{ product.name }}">
-														{% endif %}
-													{% else %}
-														<img src="https://cdn.stocksnap.io/img-thumbs/960w/christmas-cookies_HJLVSEICE7.jpg"></img>
+						<section class="products">
+							{% for product in products %}
+								{% if category.id == product.category.id %}
+									<article class="produit">
+										<a href="{{ path('app_product_show', {'id': product.id}) }}">
+											<figure>
+												{% for picture in product.gallery %}
+													{% if picture == product.gallery.first %}
+														<img src="{{ asset ('uploads/images_directory/'~picture.picture) }}" class="card-img" alt="{{ product.name }}">
+													{% endif %}
+												{% else %}
+													<img src="https://cdn.stocksnap.io/img-thumbs/960w/christmas-cookies_HJLVSEICE7.jpg"></img>
 												{% endfor %}
-												<figcaption class="more">
+													<figcaption class="more">
 													<p>{{ product.description }}</p>
 													<button type="button" href="{{ path('app_product_show', {'id': product.id}) }}" class="btn">Voir</button>
 												</figcaption>
 											</figure>
-
+										</a>
 											<aside class="overlay">
 												<h5>{{ product.name }}</h5>
 												<div class="hidden">
@@ -56,13 +56,13 @@
 													</form>
 												</div>
 											</aside>
-										</a>
 									</article>
-								{% endif %}
+								{% endif %}			
 							{% else %}
 								<p>aucun produit dans ce rayon</p>
 							{% endfor %}
 						</section>
+
 					{% endfor %}
 				</section>
 			</div>

@@ -65,12 +65,9 @@ class CartController extends AbstractController
     }
 
     #[Route('/', name: 'app_cart_quick', methods: ['GET', 'POST'])]
-    public function quick(Request $request, CartRepository $cartRepository, Product $product): Response
+    public function quick(CartRepository $cartRepository, Product $product)
     {
-
-        dd($request->request->all());
         $cart = new Cart();
-
         $cart->setQuantity(1);
         $cart->setUser($this->getUser());
         $cart->setProduct($product);
@@ -78,9 +75,9 @@ class CartController extends AbstractController
         $cartRepository->save($cart, true);
 
         // $this->addFlash('success', 'Produit ajouté au panier !');
-        return $this->redirectToRoute('app_shop_user', [
-            // 'display_cart' => $this->checkCart(),
-        ]);
+        // return $this->redirectToRoute('app_shop_user', [
+        //     'display_cart' => $this->checkCart(),
+        // ]);
     }
 
     #[Route('/{id}', name: 'app_cart_show', methods: ['GET'])]

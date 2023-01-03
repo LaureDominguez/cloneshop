@@ -22,10 +22,6 @@ class ProductController extends AbstractController
         $this->galleryRepository = $galleryRepository;
         $this->cartController = $cartController;
     }
-    // public function checkCart()
-    // {
-    //     $checkCart = $this->cartController->checkCart();
-    // }
 
     
 ///////// Index /////////////////
@@ -141,12 +137,15 @@ class ProductController extends AbstractController
         ]);
     }
 
-    // #[Route('admin/{id}/edit', name: 'app_img_delete', methods: ['GET', 'POST'])]
-    // public function remove(Gallery $entity): void
-    // {
-    //     dd($entity);
-    //     $this->remove = $this->galleryRepository->remove($entity);
-    // }
+    #[Route('admin/{id}/edit', name: 'app_img_delete', methods: ['GET', 'POST'])]
+    public function remove(Request $request, Product $product, Gallery $entity, GalleryRepository $galleryRepository)
+    {
+        if ($this->isCsrfTokenValid('delete' . $entity->getId(), $request->request->get('_token'))) {
+            $galleryRepository->remove($entity, true);
+        }
+
+        return $this->redirectToRoute('app_product_edit', ['id' => $product->getId()], Response::HTTP_SEE_OTHER);
+    }
 
 ///////////////// Delete ///////////////
 
