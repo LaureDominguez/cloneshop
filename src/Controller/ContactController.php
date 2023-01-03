@@ -21,10 +21,10 @@ class ContactController extends AbstractController
     {
         $this->cartController = $cartController;
     }
-    public function checkCart()
-    {
-        $this->checkCart = $this->cartController->checkCart();
-    }
+    // public function checkCart()
+    // {
+    //     $this->checkCart = $this->cartController->checkCart();
+    // }
 
     #[Route('/contact', name: 'app_contact')]
     public function index(
@@ -62,7 +62,7 @@ class ContactController extends AbstractController
 
         return $this->render('contact/index.html.twig', [
             'form' => $form->createView(),
-            'display_cart' => $this->checkCart(),
+            'display_cart' => $this->cartController->checkCart(),
         ]);
     }
 }

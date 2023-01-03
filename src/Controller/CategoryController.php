@@ -21,17 +21,13 @@ class CategoryController extends AbstractController
     {
         $this->cartController = $cartController;
     }
-    public function checkCart()
-    {
-        $this->checkCart = $this->cartController->checkCart();
-    }
 
     #[Route('/', name: 'app_category_index', methods: ['GET'])]
     public function index(CategoryRepository $categoryRepository): Response
     {
         return $this->render('category/index.html.twig', [
             'categories' => $categoryRepository->findAll(),
-            'display_cart' => $this->checkCart(),
+            'display_cart' => $this->cartController->checkCart(),
         ]);
     }
 
@@ -55,17 +51,17 @@ class CategoryController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_category_show', methods: ['GET'])]
-    public function show(Category $category, ProductRepository $productRepository): Response
-    {
-        return $this->render('category/show.html.twig', [
-            'category' => $category,
-            'products' => $productRepository->findBy([
-                "category" => $category
-            ]),
-            'display_cart' => $this->checkCart(),
-        ]);
-    }
+    // #[Route('/{id}', name: 'app_category_show', methods: ['GET'])]
+    // public function show(Category $category, ProductRepository $productRepository): Response
+    // {
+    //     return $this->render('category/show.html.twig', [
+    //         'category' => $category,
+    //         'products' => $productRepository->findBy([
+    //             "category" => $category
+    //         ]),
+    //         'display_cart' => $this->cartController->checkCart(),
+    //     ]);
+    // }
 
     #[Route('admin/{id}/edit', name: 'app_category_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Category $category, ManagerRegistry $doctrine): Response

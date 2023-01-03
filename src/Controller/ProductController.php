@@ -22,10 +22,10 @@ class ProductController extends AbstractController
         $this->galleryRepository = $galleryRepository;
         $this->cartController = $cartController;
     }
-    public function checkCart()
-    {
-        $this->checkCart = $this->cartController->checkCart();
-    }
+    // public function checkCart()
+    // {
+    //     $checkCart = $this->cartController->checkCart();
+    // }
 
     
 ///////// Index /////////////////
@@ -35,7 +35,7 @@ class ProductController extends AbstractController
     {
         return $this->render('product/index.html.twig', [
             'products' => $productRepository->findAll(),
-            'display_cart' => $this->checkCart(),
+            'display_cart' => $this->cartController->checkCart(),
         ]);
     }
 
@@ -94,7 +94,7 @@ class ProductController extends AbstractController
             'gallery' => $galleryRepository->findBy([
                 "product" => $product,
             ]),
-            'display_cart' => $this->checkCart(),
+            'display_cart' => $this->cartController->checkCart(),
         ]);
     }
 
@@ -134,7 +134,6 @@ class ProductController extends AbstractController
             };
         }
 
-
         return $this->renderForm('product/edit.html.twig', [
             'product' => $product,
             'form' => $form,
@@ -142,10 +141,12 @@ class ProductController extends AbstractController
         ]);
     }
 
-    public function remove(Gallery $entity): void
-    {
-        $this->remove = $this->galleryRepository->remove($entity);
-    }
+    // #[Route('admin/{id}/edit', name: 'app_img_delete', methods: ['GET', 'POST'])]
+    // public function remove(Gallery $entity): void
+    // {
+    //     dd($entity);
+    //     $this->remove = $this->galleryRepository->remove($entity);
+    // }
 
 ///////////////// Delete ///////////////
 

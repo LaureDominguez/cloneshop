@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\Validator\Constraints\All;
 
 #[Route('/registred/cart')]
 class CartController extends AbstractController
@@ -63,18 +64,20 @@ class CartController extends AbstractController
         ]);
     }
 
-    #[Route('/quick/{id}', name: 'app_cart_quick', methods: ['GET', 'POST'])]
+    #[Route('/', name: 'app_cart_quick', methods: ['GET', 'POST'])]
     public function quick(Request $request, CartRepository $cartRepository, Product $product): Response
     {
+
+        dd($request->request->all());
         $cart = new Cart();
-        $cart->setQuantity($request->request->get('quantity'));
+
+        $cart->setQuantity(1);
         $cart->setUser($this->getUser());
         $cart->setProduct($product);
-        dd($cart);
 
         $cartRepository->save($cart, true);
 
-        $this->addFlash('success', 'Produit ajouté au panier !');
+        // $this->addFlash('success', 'Produit ajouté au panier !');
         return $this->redirectToRoute('app_shop_user', [
             // 'display_cart' => $this->checkCart(),
         ]);

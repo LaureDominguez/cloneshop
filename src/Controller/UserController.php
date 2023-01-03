@@ -22,10 +22,10 @@ class UserController extends AbstractController
     {
         $this->cartController = $cartController;
     }
-    public function checkCart()
-    {
-        $this->checkCart = $this->cartController->checkCart();
-    }
+    // public function checkCart()
+    // {
+    //     $this->checkCart = $this->cartController->checkCart();
+    // }
 
     // #[Route('/user/list', name: 'app_user_index', methods: ['GET'])]
     // public function index(UserRepository $userRepository): Response
@@ -83,7 +83,7 @@ class UserController extends AbstractController
     {
         return $this->render('user/show.html.twig', [
             'user' => $user,
-            'display_cart' => $this->checkCart(),
+            'display_cart' => $this->cartController->checkCart(),
         ]);
     }
 
