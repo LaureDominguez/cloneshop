@@ -9,11 +9,10 @@
 			<h1>Modifier le produit</h1>
 			<div class="block-creation">
 				{{ include('product/_form.html.twig', {'button_label': 'Modifier'}) }}
+				<h4>Gallerie</h4>
 				{% for picture in product.gallery %}
 					<img src="{{ asset ('uploads/images_directory/'~picture.picture) }}" class="admin-img" alt="{{ picture.id }}">
-					<button type="button" action="{{ path('app_img_delete', {'id': picture.id} )}}">supprimer</button>
-
-
+					<a class="btn btn-sm" href="{{ path('app_img_delete', {'id': picture.id} )}}">supprimer</a>
 				{% endfor %}
 			</div>
 

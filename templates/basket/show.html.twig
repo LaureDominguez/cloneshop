@@ -8,35 +8,40 @@
 		<div class="shopUserView">
 			<h1>Panier</h1>
 
-			{# {% if cart !empty %} #}
-			<table class="table">
-				<thead>
-					<tr>
-						<th scope="col">Article</th>
-						<th scope="col">Prix</th>
-						<th scope="col">Quantité</th>
-					</tr>
-				</thead>
-
-				<tbody class="table-group-divider">
-					{% for product in cart %}
+			{% if cart is empty %}
+				<p>Votre panier est vide</p>
+			{% else %}
+				<table class="table">
+					<thead>
 						<tr>
-							<td>{{ product.product.name }}</td>
-							<td>{{ product.product.price }}</td>
-							<td>{{ product.quantity }}</td>
+							<th scope="col">Article</th>
+							<th scope="col">Prix</th>
+							<th scope="col">Quantité</th>
+							<th scope="col">Action</th>
 						</tr>
-                    {% else %}
-                            </tbody>
-                        </table>
-                        <p colspan="5">Votre panier est vide</p>
-                    {% endfor %}
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <th>Total</th>
-                        <td>{{ total }}</td>
-                    </tr>
-                </tfoot>
-            </table>
+					</thead>
+					<tbody class="table-group-divider">
+						{% for product in cart %}
+							<tr>
+								<td>{{ product.product.name }}</td>
+								<td>{{ product.product.price }}
+									€</td>
+								<td>{{ product.quantity }}</td>
+								<td>
+									<a class="btn btn-sm" href="{{ path('app_cart_delete', {'id': product.id}) }}">supprimer</a>
+								</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+					<tfoot>
+						<tr class="table-warning">
+							<th>Total</th>
+							<th>{{ total }}€</th>
+						</tr>
+					</tfoot>
+				</table>
+			{% endif %}
 
-</div></div>{% endblock %}
+		</div>
+	</div>
+{% endblock %}

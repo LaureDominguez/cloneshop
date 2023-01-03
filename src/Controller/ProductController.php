@@ -109,11 +109,6 @@ class ProductController extends AbstractController
             $images = $form->get('gallery')->getData();
 
             if ($images == null) {
-                $img = new Gallery();
-                $img->setPicture('<i class="fa-regular fa-image"></i>');
-                $galleryRepository->save($img, true);
-                $product->addGallery($img);
-                $productRepository->save($product, true);
                 return $this->redirectToRoute('app_product_edit', ['id'=> $product->getId()], Response::HTTP_SEE_OTHER);
             } else {
                 $fichier = md5(uniqid()) . '-' . uniqid() . '.' . $images->guessExtension();
@@ -137,14 +132,15 @@ class ProductController extends AbstractController
         ]);
     }
 
-    #[Route('admin/{id}/edit', name: 'app_img_delete', methods: ['GET', 'POST'])]
-    public function remove(Request $request, Product $product, Gallery $entity, GalleryRepository $galleryRepository)
+    #[Route('admin', name: 'app_img_delete', methods: ['GET', 'POST'])]
+    public function remove(Request $request, GalleryRepository $galleryRepository)
     {
-        if ($this->isCsrfTokenValid('delete' . $entity->getId(), $request->request->get('_token'))) {
-            $galleryRepository->remove($entity, true);
-        }
-
-        return $this->redirectToRoute('app_product_edit', ['id' => $product->getId()], Response::HTTP_SEE_OTHER);
+        $img = $galleryRepository->find($request->query->get('id'));
+        $product = $img->getProduct()->getId();
+        // dd($img);
+        // 'delete' . $img;
+        $galleryRepository->remove($img, true);
+        return $this->redirectToRoute('app_product_edit', ['id' => $product], Response::HTTP_SEE_OTHER);
     }
 
 ///////////////// Delete ///////////////

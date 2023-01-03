@@ -24,9 +24,7 @@
 							<tbody class="table-group-divider">
 								{% for category in categories %}
 									<tr>
-										<th scope="row">
-											{{ category.id }}
-										</th>
+										<th scope="row"> {{ category.id }} </th>
 										<td class="cat">
 											<form method="post" action="{{ path('app_category_edit', {'id': category.id}) }}">
 												<input type="text" name="name" value="{{ category.name }}"></td>
@@ -40,9 +38,7 @@
 										<td>
 											<form method="post" action="{{ path('app_category_delete', {'id': category.id}) }}" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette catégorie ? Attention, cela supprimera tous les articles liés.');">
 												<input type="hidden" name="_token" value="{{ csrf_token('delete' ~ category.id) }}">
-												<button class="btn btn-sm">
-													<i class="fa-solid fa-trash-can" title="supprimer"></i>
-												</button>
+												<button class="btn btn-sm"><i class="fa-solid fa-trash-can" title="supprimer"></i></button>
 											</form>
 										</td>
 									</tr>

@@ -80,20 +80,20 @@ class CartController extends AbstractController
         // ]);
     }
 
-    #[Route('/{id}', name: 'app_cart_show', methods: ['GET'])]
-    public function show(Cart $cart, User $user, Product $product, ProductRepository $productRepository): Response
-    {
-        return $this->render('cart/show.html.twig', [
-            'product' => $product,
-            'cart' => $cart,
-            'user' => $user->getId(),
-            'products' => $productRepository->findBy([
-                "product_id" => $product
-            ]),
+    // #[Route('/{id}', name: 'app_cart_show', methods: ['GET'])]
+    // public function show(Cart $cart, User $user, Product $product, ProductRepository $productRepository): Response
+    // {
+    //     return $this->render('cart/show.html.twig', [
+    //         'product' => $product,
+    //         'cart' => $cart,
+    //         'user' => $user->getId(),
+    //         'products' => $productRepository->findBy([
+    //             "product_id" => $product
+    //         ]),
 
-            'display_cart' => false,
-        ]);
-    }
+    //         'display_cart' => false,
+    //     ]);
+    // }
 
     #[Route('/{id}/edit', name: 'app_cart_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Cart $cart, CartRepository $cartRepository): Response
@@ -114,13 +114,11 @@ class CartController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_cart_delete', methods: ['POST'])]
+    #[Route('/{id}', name: 'app_cart_delete', methods: ['GET', 'POST'])]
     public function delete(Request $request, Cart $cart, CartRepository $cartRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$cart->getId(), $request->request->get('_token'))) {
-            $cartRepository->remove($cart, true);
-        }
-
-        return $this->redirectToRoute('app_cart_index', ['display_cart' => false,], Response::HTTP_SEE_OTHER);
+        'delete'.$cart->getId();
+        $cartRepository->remove($cart, true);
+        return $this->redirectToRoute('app_basket', ['display_cart' => false,], Response::HTTP_SEE_OTHER);
     }
 }
