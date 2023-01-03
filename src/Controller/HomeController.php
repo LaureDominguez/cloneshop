@@ -52,8 +52,17 @@ class HomeController extends AbstractController
     #[Route('/registred/basket', name: 'app_basket', methods: ['GET'])]
     public function show(CartRepository $cartRepository, ProductRepository $productRepository): Response
     {
+        $products = $cartRepository->findBy(['user' => $this->getUser()]);
+        $listProducts = count($products);
+        $priceProducts = [];
+        foreach ($products as $value) {
+            $priceProducts []= $value->getProduct()->getPrice();
+        }
+        $total = array_sum($priceProducts);
+
         return $this->render('basket/show.html.twig', [
-            'cart' => $cartRepository->findBy(['user' => $this->getUser()]),
+            'cart' => $products,
+            'total' => $total,
             'display_cart' => false,
             // 'products' => $productRepository->findBy(['id']),
             // 'basket' => $cartRepository->findBy(['product'])

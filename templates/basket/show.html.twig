@@ -8,6 +8,7 @@
 		<div class="shopUserView">
 			<h1>Panier</h1>
 
+			{# {% if cart !empty %} #}
 			<table class="table">
 				<thead>
 					<tr>
@@ -33,11 +34,7 @@
                 <tfoot>
                     <tr>
                         <th>Total</th>
-                        <td>
-                            {% for product in cart %}
-{# total #}
-                            {% endfor %}
-                        </td>
+                        <td>{{ total }}</td>
                     </tr>
                 </tfoot>
             </table>
