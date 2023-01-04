@@ -8,6 +8,7 @@ use App\Repository\CartRepository;
 use App\Entity\Product;
 use App\Entity\User;
 use App\Repository\ProductRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -65,8 +66,12 @@ class CartController extends AbstractController
     }
 
     #[Route('/', name: 'app_cart_quick', methods: ['GET', 'POST'])]
-    public function quick(CartRepository $cartRepository, Product $product)
+    // #[ParamConverter("post", options:["id"=> "product"])]
+    public function quick(Request $request, CartRepository $cartRepository, ProductRepository $productRepository)
     {
+        $product_id = $request->query->get("id");
+        $product = $productRepository->find($product_id);
+        // dd($product);
         $cart = new Cart();
         $cart->setQuantity(1);
         $cart->setUser($this->getUser());
@@ -74,10 +79,10 @@ class CartController extends AbstractController
 
         $cartRepository->save($cart, true);
 
-        // $this->addFlash('success', 'Produit ajouté au panier !');
-        // return $this->redirectToRoute('app_shop_user', [
-        //     'display_cart' => $this->checkCart(),
-        // ]);
+        $this->addFlash('success', 'Produit ajouté au panier !');
+        return $this->redirectToRoute('app_shop_user', [
+            'display_cart' => $this->checkCart(),
+        ]);
     }
 
     // #[Route('/{id}', name: 'app_cart_show', methods: ['GET'])]

@@ -618,27 +618,45 @@ img{
 /****************************** Cart ***********************/
 
 .cart{
-    width: 30rem;
+    width: 20vw;
     height: 5rem;
     border-radius: 50px;
     position: fixed;
     top: 5rem;
-    left: -26rem;
-    display: flex;
+    left: -15vw;
+    /* display: flex; */
     justify-content: flex-end;
     align-items: center;
-    background-color: var(--orange);
+    background-color: var(--orange);    
+    transition: all 0.2s linear;
     display: none;
 }
 
 .cart:hover {
-    left: -20rem;
+    left: -10vw;
 }
 
-.cart p{
-    margin: 0;
+.cart i, .cart a{
+    margin-bottom: 0;
+    margin-right: 1rem;
+    text-align: right;
+    color: #fff;
+    transition: all .5s ease;
 }
 
-.cart i, cart p{
-    padding: 2rem;
+.cart a {
+    opacity: 0;
+}
+
+.cart:hover > i, .cart:hover a {
+    opacity: 1;
+}
+
+.alert-success{
+    width: 20vw;
+    position: fixed;
+    top: 30%;
+    left: 40%;
+    text-align: center;
+    z-index: 100;
 }

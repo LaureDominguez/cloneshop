@@ -24,7 +24,7 @@ class HomeController extends AbstractController
     public function index(): Response
     {
         return $this->render('home/index.html.twig', [
-            'display_cart' => $this->cartController->checkCart(),
+            'display_cart' => false,
         ]);
     }
 
