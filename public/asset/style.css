@@ -48,14 +48,24 @@ img{
     height: 100%;
 }
 
+/************************* All ************************/
 .blockPage {
-    width: 100%;
-    height: 100vh;
-    margin: auto;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+width: 100%;
+height: 100vh;
+margin: auto;
+background-repeat: no-repeat;
+background-size: cover;
+background-position: center;
+background-attachment: fixed;
+}
+
+.groupe-button-option{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    margin-top: 1rem;
 }
 
 /************************* Erase Bootstrap style **********************/
@@ -76,13 +86,17 @@ img{
 
 /************************* Nav **********************/
 
-.navbar{
+.navbar, .nav{
     background-color: var(--jaune);
-    opacity: 0.9;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 50;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+}
+
+.navbar {
+    height: 35vh;
+    line-height: 2;
 }
 
 .nav-item::before,
@@ -125,13 +139,11 @@ img{
 /************************* Home *********************/
 
 .home{
-    background-image: url("https://picsum.photos/1920/1080");
-    text-align: center;
+    background-image: url("https://picsum.photos/1080/1920");
     display: flex;
-    align-items: center;
-    flex-direction: column;
     justify-content: center;
     position: fixed;
+    padding: 1rem;
 }
 
 /* block-$ */
@@ -197,61 +209,20 @@ img{
 
 /* end block-$ */
 
-/****************************** Contact ***********************/
-
-.blockContact {
-    width: 50%;
-    background-color: #fff;
-    padding: 1rem;
-    border-radius: 10px;
-    text-align: left;
-    box-shadow: var(--Shadow);
-}
-
-#contact{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    align-content: center;
-    flex-flow: row wrap;
-    justify-content: space-between;
-}
-
-#contact div:nth-child(1), 
-#contact div:nth-child(2){
-    width: 45%;
-    align-self: flex-start;
-}
-
-#contact label{
-    margin-left: 1rem;
-}
-
-#contact div{
-    width: 100%;
-}
-
-
 /****************************** Log *****************************/
 
 .loginPage {
-    width: 100%;
-    height: 100vh;
-    margin: auto;
+    padding: 1rem;
     display: flex;
     align-items: center;
-    flex-direction: column;
     justify-content: center;
-    background-image: url("https://picsum.photos/800/600/?blur=2");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    height: auto;
+    justify-content: center;
+    background-image: url("https://picsum.photos/200/300/?blur=2");
+    height: 65vh;
 }
 
 .loginPage .block {
-    width: 30vw;
     background-color: #fff;
     padding: 1rem;
     border-radius: 10px;
@@ -271,10 +242,10 @@ img{
     background-color: var(--jaune);
 }
 
+
 /****************************** User profil ***********************/
 
 .user {
-    /* width: 80%; */
     background-color: #fff;
     padding: 1rem;
     border-radius: 10px;
@@ -306,92 +277,38 @@ img{
     width: 100%;
 }
 
-/****************************** Shop Admin ***********************/
+/****************************** Contact ***********************/
 
-.shopAdminView {
-    margin-top: 3rem;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 1rem;
-}
-
-.flex-container{
-    display: flex;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-}
-
-.block-category {
-    margin: 1rem;
+.blockContact {
+    background-color: #fff;
     padding: 1rem;
     border-radius: 10px;
-    border-style: solid;
-    border-color: rgb(200, 200, 200);
-    background-color: rgb(225, 225, 225);
-    width: 40%;
+    text-align: left;
+    box-shadow: var(--Shadow);
 }
 
-.fixTableHead {
-    height: 60vh;
-    overflow-y: auto;
-}
-
-.fixTableHead thead th {
-    position: sticky;
-    top: 0;
-    background-color: rgb(225, 225, 225);
-}
-
-.fixTableHead thead{
-    box-shadow:  10 10 10px #e71010;
-}
-
-.shopView img{
-    object-fit: cover;
-    width: 50px;
-    height: 50px;
-    
-}
-
-.block-creation {
-    margin: auto;
-    padding: 1rem;
-    border-radius: 10px;
-    border-style: solid;
-    border-color: rgb(200, 200, 200);
-    background-color: rgb(225, 225, 225);
-    width: 60%;
-}
-
-.groupe-button-option{
+#contact{
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
+    flex-direction: column;
     align-items: center;
     align-content: center;
-    margin-top: 1rem;
-}
-
-.block-creation #product {
-    display: flex;
-    flex-wrap: wrap;
+    flex-flow: row wrap;
     justify-content: space-between;
 }
 
-.block-creation #product div{
-    width: 40%;
+#contact div:nth-child(1), 
+#contact div:nth-child(2){
+    width: 45%;
+    align-self: flex-start;
 }
-.block-creation #product div:nth-child(3){
+
+#contact label{
+    margin-left: 1rem;
+}
+
+#contact div{
     width: 100%;
-}
-
-.block-creation img{
-    width: 20%;
-}
-
-.admin-img{
-    object-fit: cover;
-    height: 5rem;
-    width: 5rem;
 }
 
 /****************************** Shop User ***********************/
@@ -404,16 +321,15 @@ img{
     padding: 1rem;
 }
 
-.shopUserView nav {
-    position: fixed;
-    left: 0;
-    top: 20%;
+.shopUserView nav ul {
+    padding-left: 0;
 }
 
 .shopUserView nav li {
     list-style: none;
     margin: 1rem 0;
     padding: 0 0.5rem;
+    text-align: center;
 }
 
 
@@ -458,8 +374,9 @@ img{
 
 
 .shopUserView .products{
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 
 .produit{
@@ -601,8 +518,7 @@ img{
 
 .shopUserView figure{
     display: flex;
-    flex-direction: row-reverse;
-    justify-content: space-evenly;;
+    flex-direction: column-reverse;
     align-items: center;
 }
 
@@ -617,6 +533,211 @@ img{
 
 /****************************** Cart ***********************/
 
+.cart, .cart i, .cart a{
+    display: none;
+}
+
+.alert-success{
+    width: 20vw;
+    position: fixed;
+    top: 30%;
+    left: 40%;
+    text-align: center;
+    z-index: 100;
+}
+
+/****************************** Shop Admin ***********************/
+
+.shopAdminView {
+    margin-top: 3rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 1rem;
+}
+
+.block-category {
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: rgb(200, 200, 200);
+    background-color: rgb(225, 225, 225);
+}
+
+.shopView img{
+    object-fit: cover;
+    width: 50px;
+    height: 50px;
+}
+
+.block-creation {
+    margin: auto;
+    padding: 1rem;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: rgb(200, 200, 200);
+    background-color: rgb(225, 225, 225);
+    width: 60%;
+}
+
+.block-creation #product {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.block-creation #product div{
+    width: 40%;
+}
+.block-creation #product div:nth-child(3){
+    width: 100%;
+}
+
+.block-creation img{
+    width: 20%;
+}
+
+.admin-gallery{
+    display: flex;    
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.admin-img {
+    position: relative;
+}
+
+.admin-img figcaption{
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: red;
+    color: #fff;
+    margin: 0;
+    border-radius: 20px;
+}
+
+.admin-img figcaption:hover{
+    color: var(--orange);
+}
+
+.admin-img img{
+    object-fit: cover;
+    height: 5rem;
+    width: 5rem;
+}
+
+.admin-product{
+    margin-top: 3rem;
+}
+
+/***************************************************************************************/
+/************************************* Media Query *************************************/
+/***************************************************************************************/
+
+
+@media screen and (min-width:1200px){
+
+    .groupe-button-option{
+    justify-content: space-evenly;
+}
+
+    /************************* Nav **********************/
+
+    .navbar{
+    opacity: 0.9;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 50;
+    line-height: 1;
+    height: auto;
+}
+
+.nav, .navbar {
+    flex-direction: row;
+}
+
+
+/************************* Home *********************/
+
+.home{
+    background-image: url("https://picsum.photos/1920/1080");
+    align-items: center;
+}
+
+
+/****************************** Contact ***********************/
+
+.blockContact {
+    width: 50%;
+}
+
+/****************************** Log *****************************/
+
+.loginPage {
+    height: 100vh;
+    background-image: url("https://picsum.photos/800/600/?blur=2");
+}
+
+/****************************** Shop Admin ***********************/
+
+
+.flex-container{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.block-category {
+    width: 40%;
+}
+
+.fixTableHead {
+    height: 60vh;
+    overflow-y: auto;
+}
+
+.fixTableHead thead th {
+    position: sticky;
+    top: 0;
+    background-color: rgb(225, 225, 225);
+}
+
+.fixTableHead thead{
+    box-shadow:  10 10 10px #e71010;
+}
+
+/****************************** Shop User ***********************/
+
+.shopUserView nav {
+    position: fixed;
+    left: 0;
+    top: 20%;
+}
+
+.shopUserView nav li {
+    text-align: left;
+    padding-left: 1rem;
+}
+
+.shopUserView .products{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+/****************************** Products - User View ***********************/
+
+
+.shopUserView figure{
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-evenly;;
+    align-items: center;
+}
+
+/****************************** Cart ***********************/
+
 .cart{
     width: 20vw;
     height: 5rem;
@@ -624,7 +745,6 @@ img{
     position: fixed;
     top: 5rem;
     left: -15vw;
-    /* display: flex; */
     justify-content: flex-end;
     align-items: center;
     background-color: var(--orange);    
@@ -637,6 +757,7 @@ img{
 }
 
 .cart i, .cart a{
+    display: inline;
     margin-bottom: 0;
     margin-right: 1rem;
     text-align: right;
@@ -660,3 +781,6 @@ img{
     text-align: center;
     z-index: 100;
 }
+
+/* End Media Query */
+} 

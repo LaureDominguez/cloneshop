@@ -62,16 +62,14 @@ class ProductType extends AbstractType
                 "label" => "Prix",
                 "label_attr" => ["class" => "form-label"]
             ])
-            //->add("gallery")
             ->add('gallery', FileType::class, [
                 "attr" => ["class" => "form-control"],
                 'label' => "Photo",
-                // 'multiple' => true,
                 'mapped' => false,
                 'required' => false,
                 'constraints' => [
                     new Image([
-                        'maxSize' => '1024k',
+                        'maxSize' => '3000k',
                         'mimeTypes' => [
                             'image/jpeg',
                             'image/png',
@@ -81,7 +79,10 @@ class ProductType extends AbstractType
                     ])
                 ]
             ])
-            // ->add('saveAndAdd', SubmitType::class, ['label' => 'Ajouter'])
+            ->add('saveAndAdd', SubmitType::class, [
+                "attr" => ["class" => "btn btn-outline-secondary"],
+                'label' => 'Ajouter',
+            ])
         ;
     }
 

@@ -8,14 +8,18 @@
 		<section class="shopAdminView">
 			<h1>Modifier le produit</h1>
 			<div class="block-creation">
-				{{ include('product/_form.html.twig', {'button_label': 'Modifier'}) }}
+				{{ include('product/_form.html.twig', {'button_label': 'Valider'}) }}
 				<h4>Gallerie</h4>
-				{% for picture in product.gallery %}
-					<img src="{{ asset ('uploads/images_directory/'~picture.picture) }}" class="admin-img" alt="{{ picture.id }}">
-					<a class="btn btn-sm" href="{{ path('app_img_delete', {'id': picture.id} )}}">supprimer</a>
-				{% endfor %}
+				<aside class="admin-gallery">
+					{% for picture in product.gallery %}
+						<figure class="admin-img">
+							<img src="{{ asset ('uploads/images_directory/'~picture.picture) }}" alt="{{ picture.id }}">
+							<figcaption>
+								<a class="btn btn-sm" href="{{ path('app_img_delete', {'id': picture.id} )}}"><i class="fa-solid fa-xmark"></i></a>
+							</figcaption>
+						</figure>
+					{% endfor %}
+				</aside>
 			</div>
-
-
 			<section></div>
 		{% endblock %}
