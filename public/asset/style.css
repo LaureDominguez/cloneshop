@@ -1,11 +1,11 @@
-
 /************************* All ************************/
 
 :root {
+    --nav: #ff5f28;
+    --orange: #C03416;
+    --dark-red: #750000;
+    --font: #681b00;
     --jaune: #ffd97b;
-    --marron: #A72700;
-    --orange: #C52E00;
-    --vert: #88AB75;
 
     --Shadow: 0 0 10px #3a3a3a88;
 }
@@ -16,16 +16,16 @@
 
 html, body {
     font-family: 'Lato', sans-serif;
-    color: var(--marron);
+    color: var(--font);
     cursor: default;
 }
 
-h4, h5, a, ul, li, th, td{
-    color: var(--marron);
+a, ul, li{
+    color: #fff;
     text-transform: capitalize;
 }
 
-h1, h2, h3, p{
+h1, h2, h3, h4, h5{
     color: var(--orange);
     text-transform: capitalize;
 }
@@ -84,66 +84,13 @@ background-attachment: fixed;
     background-color: inherit;
 }
 
-/************************* Nav **********************/
+/************************* Animations **********************/
 
-.navbar, .nav{
-    background-color: var(--jaune);
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    align-items: center;
-}
-
-.navbar {
-    height: 35vh;
-    line-height: 2;
-}
-
-.nav-item::before,
-.nav-item::after {
-    position: absolute;
-    left: 0;
-    width: 100%;
-    margin: auto;
-    height: 2px;
-    background: var(--orange);
-    content: '';
-    opacity: 0;
-    transition: opacity 0.3s, transform 0.3s;
-    transform: translateY(-10px);
-}
-
-.nav-item::before {
-    top: 0;
-    transform: translateY(-10px);
-}
-
-.nav-item::after {
-    bottom: 0;
-    transform: translateY(10px);
-}
-
-.nav-item:hover,
-.nav-item:focus {
-    color: var(--orange);
-}
-
-.nav-item:hover::before,
-.nav-item:focus::before,
-.nav-item:hover::after,
-.nav-item:focus::after {
-    opacity: 1;
-    transform: translateY(0px);
-}
-
-/************************* Home *********************/
-
-.home{
-    background-image: url("https://picsum.photos/1080/1920");
-    display: flex;
-    justify-content: center;
-    position: fixed;
-    padding: 1rem;
+/* hide */
+@keyframes hide {
+    to{
+        opacity: 0;
+    }
 }
 
 /* block-$ */
@@ -209,6 +156,134 @@ background-attachment: fixed;
 
 /* end block-$ */
 
+/* Jello */
+@-webkit-keyframes jello-horizontal {
+    0% {
+        -webkit-transform: scale3d(1, 1, 1);
+                transform: scale3d(1, 1, 1);
+    }
+    30% {
+        -webkit-transform: scale3d(1.25, 0.75, 1);
+                transform: scale3d(1.25, 0.75, 1);
+    }
+    40% {
+        -webkit-transform: scale3d(0.75, 1.25, 1);
+                transform: scale3d(0.75, 1.25, 1);
+    }
+    50% {
+        -webkit-transform: scale3d(1.15, 0.85, 1);
+                transform: scale3d(1.15, 0.85, 1);
+    }
+    65% {
+        -webkit-transform: scale3d(0.95, 1.05, 1);
+                transform: scale3d(0.95, 1.05, 1);
+    }
+    75% {
+        -webkit-transform: scale3d(1.05, 0.95, 1);
+                transform: scale3d(1.05, 0.95, 1);
+    }
+    100% {
+        -webkit-transform: scale3d(1, 1, 1);
+                transform: scale3d(1, 1, 1);
+    }
+}
+@keyframes jello-horizontal {
+    0% {
+        -webkit-transform: scale3d(1, 1, 1);
+                transform: scale3d(1, 1, 1);
+    }
+    30% {
+        -webkit-transform: scale3d(1.25, 0.75, 1);
+                transform: scale3d(1.25, 0.75, 1);
+    }
+    40% {
+        -webkit-transform: scale3d(0.75, 1.25, 1);
+                transform: scale3d(0.75, 1.25, 1);
+    }
+    50% {
+        -webkit-transform: scale3d(1.15, 0.85, 1);
+                transform: scale3d(1.15, 0.85, 1);
+    }
+    65% {
+        -webkit-transform: scale3d(0.95, 1.05, 1);
+                transform: scale3d(0.95, 1.05, 1);
+    }
+    75% {
+        -webkit-transform: scale3d(1.05, 0.95, 1);
+                transform: scale3d(1.05, 0.95, 1);
+    }
+    100% {
+        -webkit-transform: scale3d(1, 1, 1);
+                transform: scale3d(1, 1, 1);
+    }
+}
+/* end Jello */
+
+/************************* Nav **********************/
+
+.navbar, .nav{
+    background-color: var(--nav);
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+}
+
+.navbar {
+    height: 35vh;
+    line-height: 2;
+}
+.dropdown-menu-end ul a:first-child {
+    color: var(--nav);
+}
+
+.nav-item::before,
+.nav-item::after {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    margin: auto;
+    height: 2px;
+    background: var(--orange);
+    content: '';
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+    transform: translateY(-10px);
+}
+
+.nav-item::before {
+    top: 0;
+    transform: translateY(-10px);
+}
+
+.nav-item::after {
+    bottom: 0;
+    transform: translateY(10px);
+}
+
+.nav-item:hover,
+.nav-item:focus {
+    color: #fff;
+}
+
+.nav-item:hover::before,
+.nav-item:focus::before,
+.nav-item:hover::after,
+.nav-item:focus::after {
+    opacity: 1;
+    transform: translateY(0px);
+}
+
+/************************* Home *********************/
+
+.home{
+    background-image: url("https://picsum.photos/1080/1920");
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    padding: 1rem;
+}
+
 /****************************** Log *****************************/
 
 .loginPage {
@@ -235,13 +310,14 @@ background-attachment: fixed;
 }
 
 .btn:not(.nav .btn, .produit .btn) {
-    border: solid 1px var(--orange);
+    border: solid 1px var(--dark-red);
 }
 
 .btn:hover:not(.nav .btn, .produit .btn) {
-    background-color: var(--jaune);
+    background-color: var(--nav);
+    color: #fff;
+    border: solid 1px transparent;
 }
-
 
 /****************************** User profil ***********************/
 
@@ -332,7 +408,6 @@ background-attachment: fixed;
     text-align: center;
 }
 
-
 /* shopnav */
 
     .nav_list_item {
@@ -371,7 +446,6 @@ background-attachment: fixed;
     }
 
 /* fin */
-
 
 .shopUserView .products{
     display: flex;
@@ -424,26 +498,26 @@ background-attachment: fixed;
 
 .more p {
     font-size: 1rem;
-    color: var(--marron);
+    color: var(--font);
     max-height: 8vh;
     overflow: hidden;
 }
 
 .more .btn{
-    color: var(--orange);
-    border: solid 1px var(--orange);
+    color: var(--dark-red);
+    border: solid 1px var(--dark-red);
     transition: all .2s ease;
 }
 
 .more .btn:hover{
-    background-color: var(--orange) ;
-    border: solid 1px var(--orange) ;
+    background-color: var(--dark-red) ;
+    border: solid 1px var(--dark-red) ;
     color: var(--jaune) ;
 }
 
 .produit .overlay{
     opacity: 1;
-    background-color: var(--orange);
+    background-color: var(--nav);
     position: absolute;
     bottom: 0;
     left: 5%;
@@ -470,13 +544,15 @@ background-attachment: fixed;
 
 .produit .overlay button {
     font-size: 1rem;
-    color: var(--orange);
+    color: var(--nav);
     background-color: #fff;
 }
 
 .produit .overlay button:hover{
     background-color: var(--jaune);
     color: var(--orange);
+    -webkit-animation: jello-horizontal 0.9s both;
+	animation: jello-horizontal 0.9s both;
     transition: all 0.2s ease;
 }
 
@@ -502,6 +578,7 @@ background-attachment: fixed;
     flex-direction: column;
     flex-wrap: wrap;
     height: 20rem;
+    min-width: 25rem;
 }
 
 .gallery{
@@ -544,6 +621,7 @@ background-attachment: fixed;
     left: 40%;
     text-align: center;
     z-index: 100;
+    animation: hide 1s linear 1s 1 forwards;
 }
 
 /****************************** Shop Admin ***********************/
@@ -618,7 +696,7 @@ background-attachment: fixed;
 }
 
 .admin-img figcaption:hover{
-    color: var(--orange);
+    color: var(--dark-red);
 }
 
 .admin-img img{
@@ -634,7 +712,6 @@ background-attachment: fixed;
 /***************************************************************************************/
 /************************************* Media Query *************************************/
 /***************************************************************************************/
-
 
 @media screen and (min-width:1200px){
 
@@ -658,14 +735,12 @@ background-attachment: fixed;
     flex-direction: row;
 }
 
-
 /************************* Home *********************/
 
 .home{
     background-image: url("https://picsum.photos/1920/1080");
     align-items: center;
 }
-
 
 /****************************** Contact ***********************/
 
@@ -681,7 +756,6 @@ background-attachment: fixed;
 }
 
 /****************************** Shop Admin ***********************/
-
 
 .flex-container{
     display: flex;
@@ -728,7 +802,6 @@ background-attachment: fixed;
 
 /****************************** Products - User View ***********************/
 
-
 .shopUserView figure{
     display: flex;
     flex-direction: row-reverse;
@@ -747,7 +820,7 @@ background-attachment: fixed;
     left: -15vw;
     justify-content: flex-end;
     align-items: center;
-    background-color: var(--orange);    
+    background-color: var(--nav);    
     transition: all 0.2s linear;
     display: none;
 }
@@ -769,6 +842,17 @@ background-attachment: fixed;
     opacity: 0;
 }
 
+.cart a:hover{
+    color: var(--orange);
+    transform: scale(1.2);
+}
+
+.cart:hover > i{
+    
+    -webkit-animation: jello-horizontal 0.9s infinite both;
+	animation: jello-horizontal 0.9s infinite both;
+}
+
 .cart:hover > i, .cart:hover a {
     opacity: 1;
 }
@@ -781,6 +865,5 @@ background-attachment: fixed;
     text-align: center;
     z-index: 100;
 }
-
-/* End Media Query */
 } 
+/* End Media Query */

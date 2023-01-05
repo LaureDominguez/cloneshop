@@ -21,18 +21,13 @@ class ContactController extends AbstractController
     {
         $this->cartController = $cartController;
     }
-    // public function checkCart()
-    // {
-    //     $this->checkCart = $this->cartController->checkCart();
-    // }
 
     #[Route('/contact', name: 'app_contact')]
     public function index(
         Request $request,
         EntityManagerInterface $manager,
         MailerInterface $mailer
-    ): Response
-    {
+    ): Response {
         $contact = new Contact();
         $form = $this->createForm(ContactType::class, $contact);
         $form->handleRequest($request);

@@ -85,21 +85,6 @@ class CartController extends AbstractController
         ]);
     }
 
-    // #[Route('/{id}', name: 'app_cart_show', methods: ['GET'])]
-    // public function show(Cart $cart, User $user, Product $product, ProductRepository $productRepository): Response
-    // {
-    //     return $this->render('cart/show.html.twig', [
-    //         'product' => $product,
-    //         'cart' => $cart,
-    //         'user' => $user->getId(),
-    //         'products' => $productRepository->findBy([
-    //             "product_id" => $product
-    //         ]),
-
-    //         'display_cart' => false,
-    //     ]);
-    // }
-
     #[Route('/{id}/edit', name: 'app_cart_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Cart $cart, CartRepository $cartRepository): Response
     {

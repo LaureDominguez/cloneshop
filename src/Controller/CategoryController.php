@@ -51,18 +51,6 @@ class CategoryController extends AbstractController
         ]);
     }
 
-    // #[Route('/{id}', name: 'app_category_show', methods: ['GET'])]
-    // public function show(Category $category, ProductRepository $productRepository): Response
-    // {
-    //     return $this->render('category/show.html.twig', [
-    //         'category' => $category,
-    //         'products' => $productRepository->findBy([
-    //             "category" => $category
-    //         ]),
-    //         'display_cart' => $this->cartController->checkCart(),
-    //     ]);
-    // }
-
     #[Route('admin/{id}/edit', name: 'app_category_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Category $category, ManagerRegistry $doctrine): Response
     {

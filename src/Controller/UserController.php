@@ -22,19 +22,6 @@ class UserController extends AbstractController
     {
         $this->cartController = $cartController;
     }
-    // public function checkCart()
-    // {
-    //     $this->checkCart = $this->cartController->checkCart();
-    // }
-
-    // #[Route('/user/list', name: 'app_user_index', methods: ['GET'])]
-    // public function index(UserRepository $userRepository): Response
-    // {
-    //     return $this->render('user/index.html.twig', [
-    //         'users' => $userRepository->findAll(),
-    //         'display_cart' => false,
-    //     ]);
-    // }
 
     #[Route('/register', name: 'app_user_new', methods: ['GET', 'POST'])]
     public function new(Request $request, UserRepository $userRepository, UserPasswordHasherInterface $passHasher): Response

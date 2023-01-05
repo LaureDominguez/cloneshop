@@ -63,9 +63,7 @@ class HomeController extends AbstractController
         return $this->render('basket/show.html.twig', [
             'cart' => $products,
             'total' => $total,
-            'display_cart' => false,
-            // 'products' => $productRepository->findBy(['id']),
-            // 'basket' => $cartRepository->findBy(['product'])
+            'display_cart' => false
         ]);
     }
 }
